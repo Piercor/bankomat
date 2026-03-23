@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATM", "ATM.csproj", "{B2D812AE-A109-4525-AC0D-C8F15D9B3519}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtmTesting", "..\AtmTesting\AtmTesting.csproj", "{A67F1338-8B57-4B68-948A-71E17163C54D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATM", "bankomat-dotnet-2026\ATM.csproj", "{B2D812AE-A109-4525-AC0D-C8F15D9B3519}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATM.Tests", "ATM.Tests\ATM.Tests.csproj", "{C431577D-D342-443E-90A9-3E692F858080}"
 EndProject

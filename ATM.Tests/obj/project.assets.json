@@ -393,6 +393,16 @@
         "build": {
           "build/net8.0/xunit.runner.visualstudio.props": {}
         }
+      },
+      "ATM/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "compile": {
+          "bin/placeholder/ATM.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ATM.dll": {}
+        }
       }
     }
   },
@@ -903,10 +913,16 @@
         "xunit.runner.visualstudio.3.1.4.nupkg.sha512",
         "xunit.runner.visualstudio.nuspec"
       ]
+    },
+    "ATM/1.0.0": {
+      "type": "project",
+      "path": "../bankomat-dotnet-2026/ATM.csproj",
+      "msbuildProject": "../bankomat-dotnet-2026/ATM.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net10.0": [
+      "ATM >= 1.0.0",
       "Microsoft.NET.Test.Sdk >= 17.14.1",
       "coverlet.collector >= 6.0.4",
       "xunit >= 2.9.3",
@@ -937,7 +953,11 @@
       "frameworks": {
         "net10.0": {
           "targetAlias": "net10.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\pieri\\repos\\testning\\bankomat\\bankomat-dotnet-2026\\ATM.csproj": {
+              "projectPath": "C:\\Users\\pieri\\repos\\testning\\bankomat\\bankomat-dotnet-2026\\ATM.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

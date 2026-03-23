@@ -7,7 +7,7 @@ public class AtmService
 
     public bool HasCardInserted => _currentCard != null;
     public bool IsAuthenticated => _isAuthenticated;
-    
+
     public int AtmBalance { get; private set; }
 
     public AtmService(int initialBalance)
@@ -50,13 +50,13 @@ public class AtmService
         AtmBalance -= amount;
         return _currentCard!.Account.Withdraw(amount);
     }
-    
+
     public bool Deposit(int amount)
     {
         EnsureAuthenticated();
         return _currentCard!.Account.Deposit(amount);
     }
-    
+
     public void EnsureAuthenticated()
     {
         if (_currentCard == null || !_isAuthenticated)
