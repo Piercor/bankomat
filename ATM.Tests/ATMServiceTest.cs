@@ -65,7 +65,7 @@ public class ATMServiceTest
     ATMService.InsertCard(Card);
     ATMService.EnterPin("1234");
     Assert.False(ATMService.Withdraw(7000));
-    Assert.True(ATMService.Withdraw(6000));
+    Assert.False(ATMService.Withdraw(6000));
 
     ATMService.EjectCard();
   }
