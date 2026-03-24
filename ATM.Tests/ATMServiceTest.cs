@@ -40,7 +40,17 @@ public class ATMServiceTest
     ATMService.InsertCard(Card);
     ATMService.EnterPin("1234");
 
-    Assert.True(Account.Withdraw(9000));
+    Assert.True(ATMService.Withdraw(5000));
+  }
+
+  [Fact]
+  public void EjectCard()
+  {
+    ATMService.InsertCard(Card);
+    ATMService.EnterPin("1234");
+    ATMService.EjectCard();
+
+    Assert.False(ATMService.HasCardInserted);
   }
 
   [Fact]
@@ -48,7 +58,15 @@ public class ATMServiceTest
   {
     ATMService.InsertCard(Card);
     ATMService.EnterPin("1234");
+    Assert.True(ATMService.Withdraw(5000));
 
-    Assert.False(Account.Withdraw(9001));
+    ATMService.EjectCard();
+
+    ATMService.InsertCard(Card);
+    ATMService.EnterPin("1234");
+    Assert.False(ATMService.Withdraw(7000));
+    Assert.True(ATMService.Withdraw(6000));
+
+    ATMService.EjectCard();
   }
 }

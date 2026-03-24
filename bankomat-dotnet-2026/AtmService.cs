@@ -47,6 +47,10 @@ public class AtmService
     public bool Withdraw(int amount)
     {
         EnsureAuthenticated();
+        if (AtmBalance - amount < 0)
+        {
+            return false;
+        }
         AtmBalance -= amount;
         return _currentCard!.Account.Withdraw(amount);
     }
@@ -54,6 +58,7 @@ public class AtmService
     public bool Deposit(int amount)
     {
         EnsureAuthenticated();
+        AtmBalance += amount;
         return _currentCard!.Account.Deposit(amount);
     }
 
