@@ -21,13 +21,6 @@ public class ATMServiceTest
   }
 
   [Fact]
-  public void EnterCorrectPinTest()
-  {
-    ATMService.InsertCard(Card);
-    Assert.True(ATMService.EnterPin("1234"));
-  }
-
-  [Fact]
   public void EnterWrongtPinTest()
   {
     ATMService.InsertCard(Card);
@@ -35,12 +28,21 @@ public class ATMServiceTest
   }
 
   [Fact]
+  public void EnterCorrectPinTest()
+  {
+    ATMService.InsertCard(Card);
+    Assert.True(ATMService.EnterPin("1234"));
+  }
+
+
+  [Fact]
   public void AccountCorrectWithdrawTest()
   {
     ATMService.InsertCard(Card);
     ATMService.EnterPin("1234");
+    ATMService.Withdraw(5000);
 
-    Assert.True(ATMService.Withdraw(5000));
+    Assert.Equal(4000, ATMService.GetBalance());
   }
 
   [Fact]

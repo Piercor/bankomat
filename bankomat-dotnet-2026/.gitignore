@@ -48,6 +48,10 @@ Generated\ Files/
 
 # MSTest test Results
 [Tt]est[Rr]esult*/
+
+# ATM.Tests build folders
+ATM.Tests/bin/
+ATM.Tests/obj/
 [Bb]uild[Ll]og.*
 
 # NUnit
@@ -483,7 +487,3 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
-
-# Tests bin\obj folders
-ATM.Tests\bin\*
-ATM.Tests\obj\*
