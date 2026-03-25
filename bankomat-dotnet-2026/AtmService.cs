@@ -4,15 +4,17 @@ public class AtmService
 {
     private Card? _currentCard;
     private bool _isAuthenticated;
+    private List<Card> _cardList;
 
     public bool HasCardInserted => _currentCard != null;
     public bool IsAuthenticated => _isAuthenticated;
 
     public int AtmBalance { get; private set; }
 
-    public AtmService(int initialBalance)
+    public AtmService(int initialBalance, List<Card> cardList)
     {
         AtmBalance = initialBalance;
+        _cardList = cardList;
     }
 
     public void InsertCard(Card card)
@@ -68,5 +70,29 @@ public class AtmService
         {
             throw new InvalidOperationException("Ingen autentiserad session.");
         }
+    }
+    public bool CardExist(string checkCard)
+    {
+        foreach (Card card in _cardList)
+        {
+            if (checkCard == card.CardNumber)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    public Card GetCard(string cardNumber)
+    {
+        Card? cardToGet = null;
+        foreach (Card card in _cardList)
+        {
+            if (cardNumber == card.CardNumber)
+            {
+                cardToGet = card;
+                break;
+            }
+        }
+        return cardToGet;
     }
 }

@@ -55,14 +55,11 @@ public static class ConsoleRunner
 
                     string formattedCard = cardInput.ToString().Insert(4, "-");
 
-                    foreach (Card card in cardList)
+                    if (atm.CardExist(formattedCard))
                     {
-                        if (formattedCard == card.CardNumber)
-                        {
-                            cardToInsert = card;
-                            break;
-                        }
+                        cardToInsert = atm.GetCard(formattedCard);
                     }
+
                     if (cardToInsert != null)
                     {
                         atm.InsertCard(cardToInsert);
