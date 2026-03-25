@@ -17,12 +17,12 @@ Känns detta som en komplett bankomat? Inte? Vad behöver en komplett bankomat k
 
 [X] Ta emot kort
 [X] Mata ur kort
-[ ] Aktivera kort
+[X] Aktivera kort
 [ ] Inaktivera kort
 [ ] Kontrollera typ av kort
 [ ] Neka kort
 [ ] Kontrollera pin
-[ ] Skapa pin
+[X] Skapa pin
 [ ] Ändra pin
 [ ] Äta kort efter 3 misslyckade försök
 [ ] Ånga inmatning (pin, belopp)
