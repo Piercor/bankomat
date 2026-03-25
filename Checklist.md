@@ -14,40 +14,41 @@ Bankomaten har 11000 kr. På kontot finns 9000 kr.
 Känns detta som en komplett bankomat? Inte? Vad behöver en komplett bankomat kunna? Vad behöver testas? Fundera.. planera.. implementera.. testa.
 
 # Del 2
-
-[X] Ta emot kort
-[X] Mata ur kort
-[X] Aktivera kort
-[ ] Inaktivera kort
-[ ] Kontrollera typ av kort
-[ ] Neka kort
-[ ] Kontrollera pin
-[X] Skapa pin
-[ ] Ändra pin
-[ ] Äta kort efter 3 misslyckade försök
-[ ] Ånga inmatning (pin, belopp)
-[ ] Avbryta
-[ ] Visa saldo
-[ ] Skriva ut saldo
-[ ] Skriva uttagskvitto
-[ ] Ta ut pengar
-[ ] Sätta in pengar
-[ ] Hantera maskinsaldo
-[ ] Hantera kontosaldo
-[ ] Hantera olika sedelvalörer
-[ ] Kund välja sedelvalörer vid uttag
-[ ] Hantera flera valutor
-[ ] Hantera växelkurser
-[ ] Välja språk
-[ ] Växla pengar
-[ ] Se transaktionshistorik
-[ ] Hantera / reglera uttagsgränser (per uttag, vecka, etc)
-[ ] Hantera uttagsavgifter
-[ ] Äta pengar (kund glömt)
-[ ] Andra relaterade banktjänster
-[ ] Skicka pengar
-[ ] Flytta pengar mellan konton
-[ ] Biometrisk autentisering (ansikte, etc)
-[ ] Larma (vid intrång)
-[ ] Fylla på pengar
-[ ] Ta emot uppdateringar
+Funktionalitet || Tests
+ F  T
+[X] [X] Ta emot kort
+[X] [X] Mata ur kort
+[X] [ ] Aktivera kort
+[ ] [ ] Inaktivera kort
+[ ] [ ] Kontrollera typ av kort
+[ ] [ ] Neka kort
+[ ] [ ] Kontrollera pin
+[X] [ ] Skapa pin
+[ ] [ ] Ändra pin
+[ ] [ ] Äta kort efter 3 misslyckade försök
+[ ] [ ] Ånga inmatning (pin, belopp)
+[ ] [ ] Avbryta
+[ ] [ ] Visa saldo
+[ ] [ ] Skriva ut saldo
+[ ] [ ] Skriva uttagskvitto
+[ ] [ ] Ta ut pengar
+[ ] [ ] Sätta in pengar
+[ ] [ ] Hantera maskinsaldo
+[ ] [ ] Hantera kontosaldo
+[ ] [ ] Hantera olika sedelvalörer
+[ ] [ ] Kund välja sedelvalörer vid uttag
+[ ] [ ] Hantera flera valutor
+[ ] [ ] Hantera växelkurser
+[ ] [ ] Välja språk
+[ ] [ ] Växla pengar
+[ ] [ ] Se transaktionshistorik
+[ ] [ ] Hantera / reglera uttagsgränser (per uttag, vecka, etc)
+[ ] [ ] Hantera uttagsavgifter
+[ ] [ ] Äta pengar (kund glömt)
+[ ] [ ] Andra relaterade banktjänster
+[ ] [ ] Skicka pengar
+[ ] [ ] Flytta pengar mellan konton
+[ ] [ ] Biometrisk autentisering (ansikte, etc)
+[ ] [ ] Larma (vid intrång)
+[ ] [ ] Fylla på pengar
+[ ] [ ] Ta emot uppdateringar
