@@ -8,9 +8,10 @@ public class ATMServiceTest
 
   public ATMServiceTest()
   {
-    ATMService = new AtmService(11000);
     Account = new Account(9000);
     Card = new Card("1234-5678", "1234", Account);
+    List<Card> cardList = [Card];
+    ATMService = new AtmService(11000, cardList);
 
   }
   [Fact]
