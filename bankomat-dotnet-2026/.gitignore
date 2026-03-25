@@ -485,5 +485,5 @@ $RECYCLE.BIN/
 *.swp
 
 # Tests bin\obj folders
-ATM.Tests\bin
-ATM.Tests\obj
+ATM.Tests\bin\*
+ATM.Tests\obj\*
