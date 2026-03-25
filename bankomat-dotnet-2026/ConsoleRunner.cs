@@ -4,7 +4,7 @@ using System.Globalization;
 
 public static class ConsoleRunner
 {
-    public static void Run(AtmService atm, Card demoCard)
+    public static void Run(AtmService atm, List<Card> cardList)
     {
         bool running = true;
 
@@ -12,7 +12,7 @@ public static class ConsoleRunner
         {
             if (!atm.HasCardInserted)
             {
-                running = ShowWelcomeMenu(atm, demoCard);
+                running = ShowWelcomeMenu(atm, cardList);
             }
             else if (!atm.IsAuthenticated)
             {
@@ -23,12 +23,12 @@ public static class ConsoleRunner
                 ShowMainMenu(atm);
             }
         }
-        
+
         Console.WriteLine("Tack och hej!");
-        
+
     }
 
-    private static bool ShowWelcomeMenu(AtmService atm, Card demoCard)
+    private static bool ShowWelcomeMenu(AtmService atm, List<Card> cardList)
     {
         Console.WriteLine();
         Console.WriteLine("=== BANKOMAT ===");
@@ -41,9 +41,29 @@ public static class ConsoleRunner
         switch (input)
         {
             case "1":
-                atm.InsertCard(demoCard);
-                Console.WriteLine("Kort inmatat.");
-                return true;
+                Card? cardToInsert = null;
+                Console.Write("\nAnge ditt kortnummer: ");
+                string? cardinput = Console.ReadLine();
+                foreach (Card card in cardList)
+                {
+                    if (cardinput == card.CardNumber)
+                    {
+                        cardToInsert = card;
+                        break;
+                    }
+                }
+                if (cardToInsert != null)
+                {
+                    atm.InsertCard(cardToInsert);
+                    Console.WriteLine("Kort inmatat.");
+                    return true;
+                }
+                else
+                {
+                    Console.Write("Inget kort hittat. Tryck ENTER för att fortsätta. ");
+                    Console.ReadLine();
+                    return true;
+                }
 
             case "0":
                 return false;
@@ -119,7 +139,7 @@ public static class ConsoleRunner
         string? input = Console.ReadLine();
 
         int amount = int.Parse(input);
-        
+
         bool success = atm.Withdraw(amount);
 
         if (success)
@@ -131,7 +151,7 @@ public static class ConsoleRunner
             Console.WriteLine("Uttaget kunde inte genomföras.");
         }
     }
-    
+
     private static void DepositFlow(AtmService atm)
     {
         Console.Write("Ange belopp att sätta in: ");
@@ -149,7 +169,7 @@ public static class ConsoleRunner
         {
             Console.WriteLine("Insättningen kunde inte genomföras.");
         }
-        
+
     }
-    
+
 }
