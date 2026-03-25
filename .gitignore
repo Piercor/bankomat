@@ -1,0 +1,10 @@
+# .NET ignores
+[Bb]in/
+[Oo]bj/
+*.user
+*.suo
+.vs/
+
+# Specific to ATM.Tests
+ATM.Tests/bin/
+ATM.Tests/obj/
