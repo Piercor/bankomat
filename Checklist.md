@@ -18,7 +18,7 @@ Funktionalitet || Tests
  F  T
 [X] [X] Ta emot kort
 [X] [X] Mata ur kort
-[X] [ ] Aktivera kort
+[X] [X] Aktivera kort
 [ ] [ ] Inaktivera kort
 [ ] [ ] Kontrollera typ av kort
 [ ] [ ] Neka kort

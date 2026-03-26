@@ -2,74 +2,85 @@ namespace ATM.Test;
 
 public class ATMServiceTest
 {
-  AtmService ATMService;
+  AtmService ATM;
   Account Account;
   Card Card;
+  List<Card> CardList;
 
   public ATMServiceTest()
   {
     Account = new Account(9000);
     Card = new Card("1234-5678", "1234", Account);
-    List<Card> cardList = [Card];
-    ATMService = new AtmService(11000, cardList);
+    CardList = [Card];
+    ATM = new AtmService(11000, CardList);
 
   }
   [Fact]
   public void InsertCardTest()
   {
-    ATMService.InsertCard(Card);
-    Assert.True(ATMService.HasCardInserted);
+    ATM.InsertCard(Card);
+    Assert.True(ATM.HasCardInserted);
   }
 
   [Fact]
   public void EnterWrongtPinTest()
   {
-    ATMService.InsertCard(Card);
-    Assert.False(ATMService.EnterPin("4321"));
+    ATM.InsertCard(Card);
+    Assert.False(ATM.EnterPin("4321"));
   }
 
   [Fact]
   public void EnterCorrectPinTest()
   {
-    ATMService.InsertCard(Card);
-    Assert.True(ATMService.EnterPin("1234"));
+    ATM.InsertCard(Card);
+    Assert.True(ATM.EnterPin("1234"));
   }
 
 
   [Fact]
   public void AccountCorrectWithdrawTest()
   {
-    ATMService.InsertCard(Card);
-    ATMService.EnterPin("1234");
-    ATMService.Withdraw(5000);
+    ATM.InsertCard(Card);
+    ATM.EnterPin("1234");
+    ATM.Withdraw(5000);
 
-    Assert.Equal(4000, ATMService.GetBalance());
+    Assert.Equal(4000, ATM.GetBalance());
   }
 
   [Fact]
   public void EjectCard()
   {
-    ATMService.InsertCard(Card);
-    ATMService.EnterPin("1234");
-    ATMService.EjectCard();
+    ATM.InsertCard(Card);
+    ATM.EnterPin("1234");
+    ATM.EjectCard();
 
-    Assert.False(ATMService.HasCardInserted);
+    Assert.False(ATM.HasCardInserted);
   }
 
   [Fact]
   public void AccountWrongtWithdrawTest()
   {
-    ATMService.InsertCard(Card);
-    ATMService.EnterPin("1234");
-    Assert.True(ATMService.Withdraw(5000));
+    ATM.InsertCard(Card);
+    ATM.EnterPin("1234");
+    Assert.True(ATM.Withdraw(5000));
 
-    ATMService.EjectCard();
+    ATM.EjectCard();
 
-    ATMService.InsertCard(Card);
-    ATMService.EnterPin("1234");
-    Assert.False(ATMService.Withdraw(7000));
-    Assert.False(ATMService.Withdraw(6000));
+    ATM.InsertCard(Card);
+    ATM.EnterPin("1234");
+    Assert.False(ATM.Withdraw(7000));
+    Assert.False(ATM.Withdraw(6000));
 
-    ATMService.EjectCard();
+    ATM.EjectCard();
+  }
+  [Fact]
+  public void CardActivationTest()
+  {
+    Assert.True(ATM.CheckCardFormat("87654321"));
+    Assert.False(ATM.CardExist("8765-4321"));
+    Assert.True(ATM.CheckPinFormat("4321"));
+    Assert.True(ATM.CheckPinMatches("4321", "4321"));
+    ATM.ActivateCard("8765-4321", "4321", CardList);
+    Assert.True(ATM.CardExist("8765-4321"));
   }
 }
