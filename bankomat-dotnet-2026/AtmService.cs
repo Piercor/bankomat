@@ -95,4 +95,21 @@ public class AtmService
         }
         return cardToGet;
     }
+    public bool CreatePin(string pinCode)
+    {
+        if (!int.TryParse(pinCode, out int pinInput) || pinInput.ToString().Length != 4)
+        {
+            return false;
+        }
+        else
+        {
+            Console.Write("\nAnge din pinkod igen: ");
+            string? repeatPin = Console.ReadLine();
+            if (repeatPin == pinInput.ToString())
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }
