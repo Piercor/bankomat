@@ -71,17 +71,25 @@ public class AtmService
             throw new InvalidOperationException("Ingen autentiserad session.");
         }
     }
-    public bool CardExist(string checkCard)
+    public string CardStatus(string checkCard)
     {
         foreach (Card card in _cardList)
         {
             if (checkCard == card.CardNumber)
             {
-                return true;
+                if (card.Status == Card.CardStatus.Active)
+                {
+                    return "active";
+                }
+                else
+                {
+                    return "inactive";
+                }
             }
         }
-        return false;
+        return "notfound";
     }
+
     public Card GetCard(string cardNumber)
     {
         Card? cardToGet = null;
@@ -113,8 +121,13 @@ public class AtmService
         if (pin1 == pin2) { return true; }
         else { return false; }
     }
-    public void ActivateCard(string card, string pin, List<Card> cardList)
+
+    public Card GetCurrentCard()
     {
-        cardList.Add(new(card, pin, new(0)));
+        return _currentCard;
+    }
+    public void CreateAccount(string card, string pin, List<Card> cardList)
+    {
+        cardList.Add(new(card, pin, new(0), Card.CardStatus.Active));
     }
 }
