@@ -47,7 +47,7 @@ public static class ConsoleRunner
                     Console.Write("\nAnge ditt kortnummer (8 siffror): ");
                     string? cardInput = Console.ReadLine();
 
-                    if (!atm.checkCardFormat(cardInput))
+                    if (!atm.CheckCardFormat(cardInput))
                     {
                         Console.Write("Fel inmatning. Tryck [ENTER] för att fortsätta. ");
                         Console.ReadLine();
@@ -80,7 +80,7 @@ public static class ConsoleRunner
                     Console.Write("\nAnge ditt kortnummer (8 siffror): ");
                     string? cardInput = Console.ReadLine();
 
-                    if (!atm.checkCardFormat(cardInput))
+                    if (!atm.CheckCardFormat(cardInput))
                     {
                         Console.Write("Fel inmatning. Tryck [ENTER] för att fortsätta. ");
                         Console.ReadLine();
@@ -113,11 +113,11 @@ public static class ConsoleRunner
                             string? repeatPin = Console.ReadLine();
                             if (atm.CheckPinFormat(repeatPin))
                             {
-                                if (atm.CreatePin(newPin, repeatPin))
+                                if (atm.CheckPinMatches(newPin, repeatPin))
                                 {
                                     Console.Write("\nKort aktiverat! Tryck [ENTER] för att fortsätta. ");
                                     Console.ReadLine();
-                                    cardList.Add(new(formattedCard, newPin, new(0)));
+                                    atm.ActivateCard(formattedCard, repeatPin, cardList);
                                     createPin = false;
                                 }
                                 else

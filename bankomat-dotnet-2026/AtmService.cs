@@ -96,7 +96,7 @@ public class AtmService
         return cardToGet;
     }
 
-    public bool checkCardFormat(string card)
+    public bool CheckCardFormat(string card)
     {
         if (!int.TryParse(card, out int cardInput) || cardInput.ToString().Length != 8)
         { return false; }
@@ -108,9 +108,13 @@ public class AtmService
         { return false; }
         else { return true; }
     }
-    public bool CreatePin(string pin1, string pin2)
+    public bool CheckPinMatches(string pin1, string pin2)
     {
         if (pin1 == pin2) { return true; }
         else { return false; }
+    }
+    public void ActivateCard(string card, string pin, List<Card> cardList)
+    {
+        cardList.Add(new(card, pin, new(0)));
     }
 }
