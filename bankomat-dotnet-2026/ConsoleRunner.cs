@@ -45,15 +45,16 @@ public static class ConsoleRunner
                 {
                     Card? cardToInsert = null;
                     Console.Write("\nAnge ditt kortnummer (8 siffror): ");
+                    string? cardInput = Console.ReadLine();
 
-                    if (!int.TryParse(Console.ReadLine(), out int cardInput) || cardInput.ToString().Length != 8)
+                    if (!atm.checkCardFormat(cardInput))
                     {
                         Console.Write("Fel inmatning. Tryck [ENTER] för att fortsätta. ");
                         Console.ReadLine();
                         return true;
                     }
 
-                    string formattedCard = cardInput.ToString().Insert(4, "-");
+                    string formattedCard = cardInput.Insert(4, "-");
 
                     if (atm.CardExist(formattedCard))
                     {
@@ -77,53 +78,64 @@ public static class ConsoleRunner
             case "2":
                 {
                     Console.Write("\nAnge ditt kortnummer (8 siffror): ");
+                    string? cardInput = Console.ReadLine();
 
-                    if (!int.TryParse(Console.ReadLine(), out int cardInput) || cardInput.ToString().Length != 8)
+                    if (!atm.checkCardFormat(cardInput))
                     {
                         Console.Write("Fel inmatning. Tryck [ENTER] för att fortsätta. ");
                         Console.ReadLine();
                         return true;
                     }
 
-                    string formattedCard = cardInput.ToString().Insert(4, "-");
-                    bool found = false;
+                    string formattedCard = cardInput.Insert(4, "-");
 
-                    foreach (Card card in cardList)
+                    if (atm.CardExist(formattedCard))
                     {
-                        if (formattedCard == card.CardNumber)
-                        {
-                            Console.Write("Kortet är redan aktiverat. Tryck [ENTER] för att fortsätta. ");
-                            Console.ReadLine();
-                            found = true;
-                            break;
-                        }
+                        Console.Write("Kortet är redan aktiverat. Tryck [ENTER] för att fortsätta. ");
+                        Console.ReadLine();
+                        return true;
                     }
 
-                    if (!found)
+                    bool createPin = true;
+                    while (createPin)
                     {
-                        bool createPin = true;
-                        while (createPin)
+                        Console.Write("\nAnge din pinkod (4 siffror). Tryck [X] + [ENTER] för att avbryta: ");
+                        string? newPin = Console.ReadLine();
+                        if (newPin.ToLower().Trim() == "x")
                         {
-                            Console.Write("\nAnge din pinkod (4 siffror). Tryck [X] + [ENTER] för att avbryta: ");
-                            string? newPin = Console.ReadLine();
-                            if (newPin.ToLower().Trim() == "x")
+                            Console.Write("\nKort aktivering avbröt. Tryckt [ENTER] för att fortsätta ");
+                            Console.ReadLine();
+                            createPin = false;
+                        }
+                        else if (atm.CheckPinFormat(newPin))
+                        {
+                            Console.Write("\nAnge din pinkod igen: ");
+                            string? repeatPin = Console.ReadLine();
+                            if (atm.CheckPinFormat(repeatPin))
                             {
-                                Console.Write("\nKort aktivering avbröt. Tryckt [ENTER] för att fortsätta ");
-                                Console.ReadLine();
-                                createPin = false;
-                            }
-                            else if (atm.CreatePin(newPin))
-                            {
-                                Console.Write("\nKort aktiverat! Tryck [ENTER] för att fortsätta. ");
-                                Console.ReadLine();
-                                cardList.Add(new(formattedCard, newPin, new(0)));
-                                createPin = false;
+                                if (atm.CreatePin(newPin, repeatPin))
+                                {
+                                    Console.Write("\nKort aktiverat! Tryck [ENTER] för att fortsätta. ");
+                                    Console.ReadLine();
+                                    cardList.Add(new(formattedCard, newPin, new(0)));
+                                    createPin = false;
+                                }
+                                else
+                                {
+                                    Console.Write("Fel inmatning. Tryck [ENTER] för att fortsätta. ");
+                                    Console.ReadLine();
+                                }
                             }
                             else
                             {
                                 Console.Write("Fel inmatning. Tryck [ENTER] för att fortsätta. ");
                                 Console.ReadLine();
                             }
+                        }
+                        else
+                        {
+                            Console.Write("Fel inmatning. Tryck [ENTER] för att fortsätta. ");
+                            Console.ReadLine();
                         }
                     }
                     return true;
