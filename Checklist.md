@@ -19,7 +19,7 @@ Funktionalitet || Tests
 [X] [X] Ta emot kort
 [X] [X] Mata ur kort
 [X] [X] Aktivera kort
-[ ] [ ] Inaktivera kort
+[X] [X] Inaktivera kort
 [ ] [ ] Kontrollera typ av kort
 [ ] [ ] Neka kort
 [ ] [ ] Kontrollera pin
