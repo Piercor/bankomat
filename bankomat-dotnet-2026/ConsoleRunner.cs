@@ -48,7 +48,7 @@ public static class ConsoleRunner
 
                     if (!int.TryParse(Console.ReadLine(), out int cardInput) || cardInput.ToString().Length != 8)
                     {
-                        Console.Write("Fel inmatning. Tryck ENTER för att fortsätta. ");
+                        Console.Write("Fel inmatning. Tryck [ENTER] för att fortsätta. ");
                         Console.ReadLine();
                         return true;
                     }
@@ -68,7 +68,7 @@ public static class ConsoleRunner
                     }
                     else
                     {
-                        Console.Write("Inget kort hittat. Tryck ENTER för att fortsätta. ");
+                        Console.Write("Inget kort hittat. Tryck [ENTER] för att fortsätta. ");
                         Console.ReadLine();
                         return true;
                     }
@@ -80,7 +80,7 @@ public static class ConsoleRunner
 
                     if (!int.TryParse(Console.ReadLine(), out int cardInput) || cardInput.ToString().Length != 8)
                     {
-                        Console.Write("Fel inmatning. Tryck ENTER för att fortsätta. ");
+                        Console.Write("Fel inmatning. Tryck [ENTER] för att fortsätta. ");
                         Console.ReadLine();
                         return true;
                     }
@@ -92,7 +92,7 @@ public static class ConsoleRunner
                     {
                         if (formattedCard == card.CardNumber)
                         {
-                            Console.Write("Kortet är redan aktiverat. Tryck ENTER för att fortsätta. ");
+                            Console.Write("Kortet är redan aktiverat. Tryck [ENTER] för att fortsätta. ");
                             Console.ReadLine();
                             found = true;
                             break;
@@ -104,28 +104,25 @@ public static class ConsoleRunner
                         bool createPin = true;
                         while (createPin)
                         {
-                            Console.Write("\nAnge din pinkod (4 siffror): ");
-                            if (!int.TryParse(Console.ReadLine(), out int pinInput) || pinInput.ToString().Length != 4)
+                            Console.Write("\nAnge din pinkod (4 siffror). Tryck [X] + [ENTER] för att avbryta: ");
+                            string? newPin = Console.ReadLine();
+                            if (newPin.ToLower().Trim() == "x")
                             {
-                                Console.Write("Fel inmatning. Tryck ENTER för att fortsätta. ");
+                                Console.Write("\nKort aktivering avbröt. Tryckt [ENTER] för att fortsätta ");
                                 Console.ReadLine();
+                                createPin = false;
+                            }
+                            else if (atm.CreatePin(newPin))
+                            {
+                                Console.Write("\nKort aktiverat! Tryck [ENTER] för att fortsätta. ");
+                                Console.ReadLine();
+                                cardList.Add(new(formattedCard, newPin, new(0)));
+                                createPin = false;
                             }
                             else
                             {
-                                Console.Write("\nAnge din pinkod igen: ");
-                                string? repeatPin = Console.ReadLine();
-                                if (repeatPin == pinInput.ToString())
-                                {
-                                    Console.Write("\nKort aktiverat! Tryck ENTER för att fortsätta. ");
-                                    Console.ReadLine();
-                                    cardList.Add(new(formattedCard, repeatPin, new(0)));
-                                    createPin = false;
-                                }
-                                else
-                                {
-                                    Console.Write("Fel inmatning. Tryck ENTER för att fortsätta. ");
-                                    Console.ReadLine();
-                                }
+                                Console.Write("Fel inmatning. Tryck [ENTER] för att fortsätta. ");
+                                Console.ReadLine();
                             }
                         }
                     }
