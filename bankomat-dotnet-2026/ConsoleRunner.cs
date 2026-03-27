@@ -49,14 +49,14 @@ public static class ConsoleRunner
                     Console.Write("\nAnge ditt kortnummer (8 siffror): ");
                     string? cardInput = Console.ReadLine();
 
-                    if (!atm.CheckCardFormat(cardInput))
+                    if (!atm.CheckCardFormat(cardInput!))
                     {
                         Console.Write("Fel inmatning. Tryck [ENTER] för att fortsätta. ");
                         Console.ReadLine();
                         return true;
                     }
 
-                    string formattedCard = cardInput.Insert(4, "-");
+                    string formattedCard = cardInput!.Insert(4, "-");
 
                     if (atm.CardStatus(formattedCard) == "active")
                     {
@@ -89,14 +89,14 @@ public static class ConsoleRunner
                     Console.Write("\nAnge ditt kortnummer (8 siffror): ");
                     string? cardInput = Console.ReadLine();
 
-                    if (!atm.CheckCardFormat(cardInput))
+                    if (!atm.CheckCardFormat(cardInput!))
                     {
                         Console.Write("Fel inmatning. Tryck [ENTER] för att fortsätta. ");
                         Console.ReadLine();
                         return true;
                     }
 
-                    string formattedCard = cardInput.Insert(4, "-");
+                    string formattedCard = cardInput!.Insert(4, "-");
 
                     if (atm.CardStatus(formattedCard) == "active")
                     {
@@ -118,7 +118,7 @@ public static class ConsoleRunner
                     {
                         Console.Write("\nAnge din pinkod (4 siffror). Tryck [X] + [ENTER] för att avbryta: ");
                         string? newPin = Console.ReadLine();
-                        if (newPin.ToLower().Trim() == "x")
+                        if (newPin!.ToLower().Trim() == "x")
                         {
                             Console.Write("\nKort aktivering avbröts. Tryckt [ENTER] för att fortsätta ");
                             Console.ReadLine();
@@ -127,7 +127,7 @@ public static class ConsoleRunner
                         else if (atm.CheckPinFormat(newPin))
                         {
                             Console.Write("\nAnge din pinkod igen: ");
-                            string? repeatPin = Console.ReadLine();
+                            string? repeatPin = Console.ReadLine()!;
                             if (atm.CheckPinFormat(repeatPin))
                             {
                                 if (atm.CheckPinMatches(newPin, repeatPin))
@@ -252,7 +252,7 @@ public static class ConsoleRunner
         Console.Write("Ange belopp att ta ut: ");
         string? input = Console.ReadLine();
 
-        int amount = int.Parse(input);
+        int amount = int.Parse(input!);
 
         bool success = atm.Withdraw(amount);
 
@@ -271,7 +271,7 @@ public static class ConsoleRunner
         Console.Write("Ange belopp att sätta in: ");
         string? input = Console.ReadLine();
 
-        int amount = int.Parse(input);
+        int amount = int.Parse(input!);
 
         bool success = atm.Deposit(amount);
 
@@ -288,17 +288,17 @@ public static class ConsoleRunner
     private static void CardDeactivationFlow(AtmService atm)
     {
         Console.Write("\nÄr du säkert att du vill inaktivera ditt kort? [J/N]: ");
-        switch (Console.ReadLine().ToLower().Trim())
+        switch (Console.ReadLine()?.ToLower().Trim())
         {
             case "j":
                 Console.WriteLine("Ange din pinkod");
-                string pin1 = Console.ReadLine();
+                string pin1 = Console.ReadLine()!;
 
                 if (atm.CheckPinFormat(pin1))
                 {
 
                     Console.WriteLine("Ange din pinkod igen");
-                    string pin2 = Console.ReadLine();
+                    string pin2 = Console.ReadLine()!;
                     if (atm.CheckPinFormat(pin2))
                     {
                         if (atm.CheckPinMatches(pin1, pin2))

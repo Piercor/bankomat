@@ -101,7 +101,7 @@ public class AtmService
                 break;
             }
         }
-        return cardToGet;
+        return cardToGet!;
     }
 
     public bool CheckCardFormat(string card)
@@ -124,7 +124,7 @@ public class AtmService
 
     public Card GetCurrentCard()
     {
-        return _currentCard;
+        return _currentCard!;
     }
     public void CreateAccount(string card, string pin, List<Card> cardList)
     {
